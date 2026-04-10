@@ -8,28 +8,23 @@
 *{margin:0;padding:0;box-sizing:border-box;font-family:"Microsoft YaHei",sans-serif}
 body{background:#f4f6f8;color:#222}
 
-/* 顶部导航 */
 .header{background:#1a2b48;color:white;padding:16px 24px}
 .nav{max-width:1000px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
 .logo{font-size:20px;font-weight:bold}
 .menu a{color:white;margin-left:20px;text-decoration:none;font-size:15px}
 .menu a:hover{opacity:0.8}
 
-/* 内容区 */
 .container{max-width:1000px;margin:0 auto;padding:30px 20px}
 
-/* 卡片样式 */
 .card{background:white;border-radius:12px;padding:28px;margin-bottom:24px;box-shadow:0 2px 12px rgba(0,0,0,0.06)}
 .card h2{color:#1a2b48;margin-bottom:16px;font-size:24px;border-left:4px solid #409eff;padding-left:12px}
 .card p{line-height:1.8;color:#555;margin-bottom:12px;font-size:16px}
 
-/* 视频区域 */
 .video-item{margin-bottom:20px;padding-bottom:20px;border-bottom:1px solid #f0f0f0}
 .video-item:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}
 .video-item h3{margin-bottom:8px;color:#222;font-size:18px}
 .video-item p{color:#666;margin-bottom:8px}
 
-/* 视频封面图样式 */
 .video-cover{
   width:100%;
   max-width:672px;
@@ -43,7 +38,6 @@ body{background:#f4f6f8;color:#222}
   transform:scale(1.02);
 }
 
-/* 群聊区域 */
 .group-section{text-align:center}
 .group-name{font-size:22px;font-weight:bold;color:#1a2b48;margin-bottom:8px}
 .qrcode{
@@ -53,7 +47,6 @@ body{background:#f4f6f8;color:#222}
   box-shadow:0 4px 12px rgba(0,0,0,0.1);
 }
 
-/* 复制按钮 */
 .copy-btn{
   background:#00aeec;
   color:white;
@@ -69,7 +62,6 @@ body{background:#f4f6f8;color:#222}
 
 .group-tip{color:#666;font-size:15px;margin-top:10px}
 
-/* 复制提示 */
 .toast{
   position:fixed;
   bottom:30px;
@@ -102,47 +94,36 @@ body{background:#f4f6f8;color:#222}
       <a href="#group">粉丝群</a>
     </div>
   </div>
-
 </div>
 
 <div class="container">
-
-  <!-- 关于 -->
   <div class="card" id="about">
     <h2>关于我</h2>
     <p>大家好，这里是晚风の网站！感谢大家的关注与支持～</p>
     <p>欢迎来到这里（虽然我就图一乐做的，晚风都不到这事），但也欢迎大家加入粉丝群~</p>
   </div>
 
- <!-- B站代表作 + 你的封面图 + 点击跳转 -->
-<div class="card" id="video">
-  <h2>B站代表作</h2>
-  <div class="video-item">
-    <h3>Paradox超详细攻略</h3>
-    <p>视频简介：全网最细教程，新手一看就会！</p>
-    
-    <!-- 已经帮你嵌入你发的封面图，点击跳B站 -->
-    <a href="https://www.bilibili.com/video/BV1z2XTBUEPU/" target="_blank">
-      <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAMCAgMCAgMDAwMEAwMEBQgFBQQEBQoHBwYIDAoMDAsKCwsNDhIQDQ4RDgsLEBYQERMUFRUVDA8XGBYUGBIUFRT/" class="video-cover" alt="Paradox攻略视频封面">
-    </a>
-
+  <div class="card" id="video">
+    <h2>B站代表作</h2>
+    <div class="video-item">
+      <h3>Paradox超详细攻略</h3>
+      <p>视频简介：全网最细教程，新手一看就会！</p>
+      
+      <a href="https://www.bilibili.com/video/BV1z2XTBUEPU/" target="_blank">
+        <img src="https://p3-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/17c2842b498740149a071277d127d268.jpg" class="video-cover" alt="Paradox攻略视频封面">
+      </a>
+    </div>
   </div>
-</div>
 
-  <!-- 粉丝群 + 二维码 + 复制按钮 -->
   <div class="card group-section" id="group">
     <h2>晚风の粉丝群</h2>
     <div class="group-name">晚风の群聊</div>
-
     <img src="https://p11-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/1690b3f90e3a48879211111da6193a08.jpg" class="qrcode" alt="群二维码">
-
     <button class="copy-btn" onclick="copyGroup()">📋 点击复制群号</button>
     <p class="group-tip">扫码直接加入，或复制群号搜索加群</p>
   </div>
-
 </div>
 
-<!-- 复制成功提示 -->
 <div id="toast" class="toast">✅ 复制成功！</div>
 
 <script>
@@ -154,6 +135,5 @@ function copyGroup() {
   });
 }
 </script>
-
 </body>
 </html>
