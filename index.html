@@ -15,23 +15,24 @@
   --accent:#22d3ee;
 }
 
-body{
+html, body{
+  width:100%;
+  height:100%;
   background:var(--bg);
   color:var(--text);
   line-height:1.6;
-  position:relative;
-  min-height:100vh;
+  overflow-x:hidden;
 }
 
-/* 细腻渐变背景，不空了 */
-body::before{
-  content:'';
+#light{
   position:fixed;
-  top:0;left:0;right:0;bottom:0;
-  background:radial-gradient(circle at 20% 20%, rgba(99,102,241,0.1) 0%, transparent 40%),
-              radial-gradient(circle at 80% 70%, rgba(34,211,238,0.1) 0%, transparent 40%);
-  z-index:-1;
+  width:500px;
+  height:500px;
+  background:radial-gradient(circle, rgba(99,102,241,0.15) 0%, transparent 60%);
   pointer-events:none;
+  z-index:0;
+  transform:translate(-50%,-50%);
+  transition:transform 0.05s ease;
 }
 
 .header{
@@ -50,7 +51,7 @@ body::before{
 .menu a:hover{background:rgba(99,102,241,0.2);color:var(--accent)}
 .menu a.active{background:var(--primary);color:#fff}
 
-.container{max-width:1000px;margin:0 auto;padding:40px 20px}
+.container{max-width:1000px;margin:0 auto;padding:40px 20px;position:relative;z-index:1}
 
 .page{display:none;animation:fadeIn 0.4s}
 .page.active{display:block}
@@ -58,7 +59,8 @@ body::before{
 
 .card{
   background:var(--card);border-radius:16px;padding:32px;margin-bottom:24px;
-  box-shadow:0 8px 32px rgba(0,0,0,0.2);border:1px solid rgba(255,255,255,0.05)
+  box-shadow:0 8px 32px rgba(0,0,0,0.2);border:1px solid rgba(255,255,255,0.05);
+  position:relative;z-index:1
 }
 .card h2{
   color:var(--accent);margin-bottom:20px;font-size:28px;
@@ -94,11 +96,13 @@ body::before{
 @media(max-width:768px){
   .menu a{margin-left:12px;padding:6px 8px;font-size:15px}
   .card{padding:24px}
+  #light{display:none}
 }
 </style>
 </head>
 
 <body>
+<div id="light"></div>
 
 <div class="header">
   <div class="nav">
@@ -112,29 +116,26 @@ body::before{
 </div>
 
 <div class="container">
-
-  <!-- 关于 -->
   <div class="page active" id="page-about">
     <div class="card">
       <h2>关于晚风</h2>
       <p>大家好，这里是晚风的专属宣传站！感谢每一位粉丝的关注与支持～</p>
       <p>这里会同步最新作品，欢迎加入粉丝群一起交流！</p>
-      <p>以后会搞的活动以及其他的一些事情，这里也会同步更新！</p>
+      <p>这里以后也会同步更新其他东西，例如新游戏爆料，新资讯之类的</p>
+      <p>新活动也会在这里同步更新！</p>
     </div>
   </div>
 
-  <!-- 代表作 -->
   <div class="page" id="page-video">
     <div class="card">
       <h2>代表作</h2>
-      <p style="margin-bottom:20px">Paradox 详细攻略！</p>
+      <p style="margin-bottom:20px">Paradox 超详细保姆级攻略，新手一看就会！</p>
       <a href="https://www.bilibili.com/video/BV1z2XTBUEPU/" target="_blank">
         <img src="cover.jpg" class="video-cover" alt="视频封面">
       </a>
     </div>
   </div>
 
-  <!-- 粉丝群 -->
   <div class="page" id="page-group">
     <div class="card" style="text-align:center">
       <h2>晚风の粉丝群</h2>
@@ -143,14 +144,19 @@ body::before{
       <button class="copy-btn" onclick="copyGroup()">📋 点击复制群号</button>
     </div>
   </div>
-
 </div>
 
-<!-- 复制提示 -->
 <div class="toast" id="toast">✅ 群号复制成功！</div>
 
 <script>
-// 切换页面
+// 鼠标跟随光斑
+const light = document.getElementById('light')
+document.addEventListener('mousemove', (e) => {
+  light.style.left = e.clientX + 'px'
+  light.style.top = e.clientY + 'px'
+})
+
+// 页面切换
 function showPage(id) {
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'))
   document.querySelectorAll('.menu a').forEach(a => a.classList.remove('active'))
@@ -167,6 +173,5 @@ function copyGroup() {
   })
 }
 </script>
-
 </body>
 </html>
