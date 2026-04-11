@@ -15,29 +15,33 @@
 html, body {
   width: 100%;
   height: 100%;
-  background-color: #0f172a; /* 深邃深蓝底色 */
+  background-color: #0f172a;
   color: #f1f5f9;
   line-height: 1.6;
   overflow-x: hidden;
 }
 
-/* 鼠标光斑 —— 青色 + 浅蓝色 毛玻璃效果 */
+/* 鼠标光斑：渐变淡入淡出 */
 #light {
   position: fixed;
-  width: 550px;
-  height: 550px;
+  width: 600px;
+  height: 600px;
   background: radial-gradient(
     circle,
-    rgba(94, 234, 214, 0.25) 0%,
-    rgba(56, 189, 248, 0.15) 30%,
-    transparent 60%
+    rgba(94, 234, 214, 0.3) 0%,
+    rgba(56, 189, 248, 0.15) 40%,
+    transparent 70%
   );
   border-radius: 50%;
   pointer-events: none;
   z-index: 0;
   transform: translate(-50%, -50%);
-  transition: transform 0.08s ease;
-  opacity: 0; /* 默认隐藏 */
+  opacity: 0;
+  /* 关键：缓慢出现 + 缓慢消失 */
+  transition: 
+    opacity 1.2s ease-out,
+    left 0.15s ease,
+    top 0.15s ease;
 }
 
 .header {
@@ -47,7 +51,7 @@ html, body {
   top: 0;
   z-index: 999;
   padding: 16px 24px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid rgba(255,255,255,0.1);
 }
 
 .nav {
@@ -96,7 +100,7 @@ html, body {
 
 .page {
   display: none;
-  animation: fadeIn 0.4s ease;
+  animation: fadeIn 0.6s ease;
 }
 
 .page.active {
@@ -114,8 +118,8 @@ html, body {
   border-radius: 16px;
   padding: 32px;
   margin-bottom: 24px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+  border: 1px solid rgba(255,255,255,0.05);
   position: relative;
   z-index: 1;
 }
@@ -219,31 +223,28 @@ html, body {
 </div>
 
 <div class="container">
-  <!-- 关于 -->
   <div class="page active" id="page-about">
     <div class="card">
-      <h2>关于这里</h2>
-      <p>先介绍一下吧</p>
-      <p>大家好，这里是晚风の网站！(tips:这个网站的存在晚风都不知到,嘿嘿 哦对,自我介绍:我是这个网站的作者,时魏,是晚风的朋友) </p>
-      <p>欢迎你们来到这个网站，这里以后将会有很多关于晚风的东西，感谢晚风的(也包括我的)粉丝们对我们的支持</p>
-      <p>这里会同步最新作品，欢迎加入粉丝群一起交流！</p>
-      <p>这里以后也会同步更新其他东西，例如新游戏爆料，新资讯之类的</p>
-      <p>一些新的活动也会在这里同步更新！
+      <h2>关于晚风</h2>
+      <p>先介绍一下吧</p>      
+      <p>大家好，这里是晚风の网站！(tips:这个网站的存在晚风都不知到,嘿嘿 哦对,自我介绍:我是这个网站的作者,时魏,是晚风的朋友) </p>      
+      <p>欢迎你们来到这个网站，这里以后将会有很多关于晚风的东西，感谢晚风的(也包括我的)粉丝们对我们的支持</p>      
+      <p>这里会同步最新作品，欢迎加入粉丝群一起交流！</p>      
+      <p>这里以后也会同步更新其他东西，例如新游戏爆料，新资讯之类的</p>      
+      <p>一些新的活动也会在这里同步更新！</p>
     </div>
   </div>
 
-  <!-- 代表作 -->
   <div class="page" id="page-video">
     <div class="card">
       <h2>代表作</h2>
-      <p style="margin-bottom:20px">Paradox 详细攻略！</p>
+      <p style="margin-bottom:20px">Paradox 超详细保姆级攻略，新手一看就会！</p>
       <a href="https://www.bilibili.com/video/BV1z2XTBUEPU/" target="_blank">
         <img src="cover.jpg" class="video-cover" alt="视频封面">
       </a>
     </div>
   </div>
 
-  <!-- 粉丝群 -->
   <div class="page" id="page-group">
     <div class="card" style="text-align:center">
       <h2>晚风の粉丝群</h2>
@@ -259,14 +260,14 @@ html, body {
 <script>
 const light = document.getElementById('light');
 
-// 鼠标移动 → 显示光斑
+// 鼠标移动：光斑缓慢出现
 document.addEventListener('mousemove', (e) => {
   light.style.opacity = '1';
   light.style.left = e.clientX + 'px';
   light.style.top = e.clientY + 'px';
 });
 
-// 鼠标离开窗口 → 光斑消失
+// 鼠标离开窗口：光斑缓慢消失
 document.addEventListener('mouseleave', () => {
   light.style.opacity = '0';
 });
