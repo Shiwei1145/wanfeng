@@ -21,27 +21,25 @@ html, body {
   overflow-x: hidden;
 }
 
-/* 鼠标光斑：渐变淡入淡出 */
 #light {
   position: fixed;
   width: 600px;
   height: 600px;
   background: radial-gradient(
     circle,
-    rgba(94, 234, 214, 0.3) 0%,
-    rgba(56, 189, 248, 0.15) 40%,
-    transparent 70%
+    rgba(94, 234, 214, 0.28) 0%,
+    rgba(56, 189, 248, 0.14) 35%,
+    transparent 65%
   );
   border-radius: 50%;
   pointer-events: none;
   z-index: 0;
   transform: translate(-50%, -50%);
   opacity: 0;
-  /* 关键：缓慢出现 + 缓慢消失 */
-  transition: 
-    opacity 1.2s ease-out,
-    left 0.15s ease,
-    top 0.15s ease;
+  /* 核心：出现快、消失柔，不生硬 */
+  transition: opacity 0.5s cubic-bezier(0.2, 0.8, 0.2, 1),
+              left 0.12s ease,
+              top 0.12s ease;
 }
 
 .header {
@@ -100,7 +98,7 @@ html, body {
 
 .page {
   display: none;
-  animation: fadeIn 0.6s ease;
+  animation: fadeIn 0.4s ease;
 }
 
 .page.active {
@@ -226,11 +224,11 @@ html, body {
   <div class="page active" id="page-about">
     <div class="card">
       <h2>关于晚风</h2>
-      <p>先介绍一下吧</p>      
-      <p>大家好，这里是晚风の网站！(tips:这个网站的存在晚风都不知到,嘿嘿 哦对,自我介绍:我是这个网站的作者,时魏,是晚风的朋友) </p>      
-      <p>欢迎你们来到这个网站，这里以后将会有很多关于晚风的东西，感谢晚风的(也包括我的)粉丝们对我们的支持</p>      
-      <p>这里会同步最新作品，欢迎加入粉丝群一起交流！</p>      
-      <p>这里以后也会同步更新其他东西，例如新游戏爆料，新资讯之类的</p>      
+      <p>先介绍一下吧</p>            
+      <p>大家好，这里是晚风の网站！(tips:这个网站的存在晚风都不知到,嘿嘿 哦对,自我介绍:我是这个网站的作者,时魏,是晚风的朋友) </p>            
+      <p>欢迎你们来到这个网站，这里以后将会有很多关于晚风的东西，感谢晚风的(也包括我的)粉丝们对我们的支持</p>            
+      <p>这里会同步最新作品，欢迎加入粉丝群一起交流！</p>            
+      <p>这里以后也会同步更新其他东西，例如新游戏爆料，新资讯之类的</p>            
       <p>一些新的活动也会在这里同步更新！</p>
     </div>
   </div>
@@ -260,19 +258,16 @@ html, body {
 <script>
 const light = document.getElementById('light');
 
-// 鼠标移动：光斑缓慢出现
 document.addEventListener('mousemove', (e) => {
   light.style.opacity = '1';
   light.style.left = e.clientX + 'px';
   light.style.top = e.clientY + 'px';
 });
 
-// 鼠标离开窗口：光斑缓慢消失
 document.addEventListener('mouseleave', () => {
   light.style.opacity = '0';
 });
 
-// 页面切换
 function showPage(id) {
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
   document.querySelectorAll('.menu a').forEach(a => a.classList.remove('active'));
@@ -280,7 +275,6 @@ function showPage(id) {
   document.getElementById('nav-' + id).classList.add('active');
 }
 
-// 复制群号
 function copyGroup() {
   navigator.clipboard.writeText("908769617").then(() => {
     const t = document.getElementById('toast');
@@ -289,6 +283,5 @@ function copyGroup() {
   });
 }
 </script>
-
 </body>
 </html>
