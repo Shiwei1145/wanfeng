@@ -5,103 +5,206 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>晚风の宣传站</title>
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:"PingFang SC","Microsoft YaHei",sans-serif}
-:root{
-  --primary:#6366f1;
-  --bg:#0f172a;
-  --card:#1e293b;
-  --text:#f1f5f9;
-  --text-light:#94a3b8;
-  --accent:#22d3ee;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "PingFang SC", "Microsoft YaHei", sans-serif;
 }
 
-html, body{
-  width:100%;
-  height:100%;
-  background:var(--bg);
-  color:var(--text);
-  line-height:1.6;
-  overflow-x:hidden;
+html, body {
+  width: 100%;
+  height: 100%;
+  background-color: #0f172a; /* 深邃深蓝底色 */
+  color: #f1f5f9;
+  line-height: 1.6;
+  overflow-x: hidden;
 }
 
-#light{
-  position:fixed;
-  width:500px;
-  height:500px;
-  background:radial-gradient(circle, rgba(99,102,241,0.15) 0%, transparent 60%);
-  pointer-events:none;
-  z-index:0;
-  transform:translate(-50%,-50%);
-  transition:transform 0.05s ease;
+/* 鼠标光斑 —— 青色 + 浅蓝色 毛玻璃效果 */
+#light {
+  position: fixed;
+  width: 550px;
+  height: 550px;
+  background: radial-gradient(
+    circle,
+    rgba(94, 234, 214, 0.25) 0%,
+    rgba(56, 189, 248, 0.15) 30%,
+    transparent 60%
+  );
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 0;
+  transform: translate(-50%, -50%);
+  transition: transform 0.08s ease;
+  opacity: 0; /* 默认隐藏 */
 }
 
-.header{
-  background:rgba(30,41,59,0.8);
-  backdrop-filter:blur(10px);
-  position:sticky;top:0;z-index:999;
-  padding:16px 24px;
-  border-bottom:1px solid rgba(255,255,255,0.1);
-}
-.nav{max-width:1000px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
-.logo{font-size:22px;font-weight:bold;color:var(--accent)}
-.menu a{
-  color:var(--text);margin-left:24px;text-decoration:none;font-size:16px;
-  padding:6px 12px;border-radius:8px;transition:0.3s;
-}
-.menu a:hover{background:rgba(99,102,241,0.2);color:var(--accent)}
-.menu a.active{background:var(--primary);color:#fff}
-
-.container{max-width:1000px;margin:0 auto;padding:40px 20px;position:relative;z-index:1}
-
-.page{display:none;animation:fadeIn 0.4s}
-.page.active{display:block}
-@keyframes fadeIn{from{opacity:0}to{opacity:1}}
-
-.card{
-  background:var(--card);border-radius:16px;padding:32px;margin-bottom:24px;
-  box-shadow:0 8px 32px rgba(0,0,0,0.2);border:1px solid rgba(255,255,255,0.05);
-  position:relative;z-index:1
-}
-.card h2{
-  color:var(--accent);margin-bottom:20px;font-size:28px;
-  padding-left:16px;position:relative
-}
-.card h2::before{
-  content:'';position:absolute;left:0;top:0;width:4px;height:100%;
-  background:linear-gradient(180deg,var(--primary),var(--accent));border-radius:2px
-}
-.card p{color:var(--text-light);font-size:17px;line-height:1.8;margin-bottom:16px}
-
-.video-cover{
-  width:100%;max-width:720px;border-radius:12px;margin:16px 0;
-  cursor:pointer;transition:0.3s;box-shadow:0 4px 20px rgba(34,211,238,0.15)
-}
-.video-cover:hover{transform:scale(1.03);box-shadow:0 8px 32px rgba(34,211,238,0.3)}
-
-.copy-btn{
-  background:linear-gradient(135deg,var(--primary),var(--accent));
-  color:white;border:none;padding:14px 36px;border-radius:50px;
-  font-size:18px;font-weight:bold;cursor:pointer;margin-top:16px;
-  transition:0.3s;box-shadow:0 4px 16px rgba(99,102,241,0.4)
-}
-.copy-btn:hover{transform:translateY(-2px)}
-
-.toast{
-  position:fixed;bottom:40px;left:50%;transform:translateX(-50%);
-  background:linear-gradient(135deg,var(--primary),var(--accent));
-  color:white;padding:12px 28px;border-radius:50px;
-  font-size:16px;font-weight:bold;display:none;z-index:999
+.header {
+  background: rgba(30, 41, 59, 0.8);
+  backdrop-filter: blur(10px);
+  position: sticky;
+  top: 0;
+  z-index: 999;
+  padding: 16px 24px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-@media(max-width:768px){
-  .menu a{margin-left:12px;padding:6px 8px;font-size:15px}
-  .card{padding:24px}
-  #light{display:none}
+.nav {
+  max-width: 1000px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.logo {
+  font-size: 22px;
+  font-weight: bold;
+  color: #5eead4;
+}
+
+.menu a {
+  color: #f1f5f9;
+  margin-left: 24px;
+  text-decoration: none;
+  font-size: 16px;
+  padding: 6px 12px;
+  border-radius: 8px;
+  transition: 0.3s;
+}
+
+.menu a:hover {
+  background: rgba(56, 189, 248, 0.15);
+  color: #5eead4;
+}
+
+.menu a.active {
+  background: #2563eb;
+  color: #fff;
+}
+
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  position: relative;
+  z-index: 1;
+}
+
+.page {
+  display: none;
+  animation: fadeIn 0.4s ease;
+}
+
+.page.active {
+  display: block;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.card {
+  background: rgba(30, 41, 59, 0.7);
+  backdrop-filter: blur(12px);
+  border-radius: 16px;
+  padding: 32px;
+  margin-bottom: 24px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  position: relative;
+  z-index: 1;
+}
+
+.card h2 {
+  color: #5eead4;
+  margin-bottom: 20px;
+  font-size: 28px;
+  padding-left: 16px;
+  position: relative;
+}
+
+.card h2::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 4px;
+  height: 100%;
+  background: linear-gradient(180deg, #2563eb, #5eead4);
+  border-radius: 2px;
+}
+
+.card p {
+  color: #94a3b8;
+  font-size: 17px;
+  line-height: 1.8;
+  margin-bottom: 16px;
+}
+
+.video-cover {
+  width: 100%;
+  max-width: 720px;
+  border-radius: 12px;
+  margin: 16px 0;
+  cursor: pointer;
+  transition: 0.3s;
+  box-shadow: 0 4px 20px rgba(56, 189, 248, 0.15);
+}
+
+.video-cover:hover {
+  transform: scale(1.03);
+  box-shadow: 0 8px 32px rgba(56, 189, 248, 0.25);
+}
+
+.copy-btn {
+  background: linear-gradient(135deg, #2563eb, #38bdf8);
+  color: white;
+  border: none;
+  padding: 14px 36px;
+  border-radius: 50px;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 16px;
+  transition: 0.3s;
+  box-shadow: 0 4px 16px rgba(37, 99, 235, 0.3);
+}
+
+.copy-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(37, 99, 235, 0.4);
+}
+
+.toast {
+  position: fixed;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: linear-gradient(135deg, #2563eb, #38bdf8);
+  color: white;
+  padding: 12px 28px;
+  border-radius: 50px;
+  font-size: 16px;
+  font-weight: bold;
+  display: none;
+  z-index: 999;
+}
+
+@media (max-width: 768px) {
+  .menu a { margin-left: 12px; padding: 6px 8px; font-size: 15px; }
+  .card { padding: 24px; }
+  #light { display: none; }
 }
 </style>
 </head>
 
 <body>
+
 <div id="light"></div>
 
 <div class="header">
@@ -116,26 +219,31 @@ html, body{
 </div>
 
 <div class="container">
+  <!-- 关于 -->
   <div class="page active" id="page-about">
     <div class="card">
-      <h2>关于晚风</h2>
-      <p>大家好，这里是晚风的专属宣传站！感谢每一位粉丝的关注与支持～</p>
+      <h2>关于这里</h2>
+      <p>先介绍一下吧</p>
+      <p>大家好，这里是晚风の网站！(tips:这个网站的存在晚风都不知到,嘿嘿 哦对,自我介绍:我是这个网站的作者,时魏,是晚风的朋友) </p>
+      <p>欢迎你们来到这个网站，这里以后将会有很多关于晚风的东西，感谢晚风的(也包括我的)粉丝们对我们的支持</p>
       <p>这里会同步最新作品，欢迎加入粉丝群一起交流！</p>
       <p>这里以后也会同步更新其他东西，例如新游戏爆料，新资讯之类的</p>
-      <p>新活动也会在这里同步更新！</p>
+      <p>一些新的活动也会在这里同步更新！
     </div>
   </div>
 
+  <!-- 代表作 -->
   <div class="page" id="page-video">
     <div class="card">
       <h2>代表作</h2>
-      <p style="margin-bottom:20px">Paradox 超详细保姆级攻略，新手一看就会！</p>
+      <p style="margin-bottom:20px">Paradox 详细攻略！</p>
       <a href="https://www.bilibili.com/video/BV1z2XTBUEPU/" target="_blank">
         <img src="cover.jpg" class="video-cover" alt="视频封面">
       </a>
     </div>
   </div>
 
+  <!-- 粉丝群 -->
   <div class="page" id="page-group">
     <div class="card" style="text-align:center">
       <h2>晚风の粉丝群</h2>
@@ -149,29 +257,37 @@ html, body{
 <div class="toast" id="toast">✅ 群号复制成功！</div>
 
 <script>
-// 鼠标跟随光斑
-const light = document.getElementById('light')
+const light = document.getElementById('light');
+
+// 鼠标移动 → 显示光斑
 document.addEventListener('mousemove', (e) => {
-  light.style.left = e.clientX + 'px'
-  light.style.top = e.clientY + 'px'
-})
+  light.style.opacity = '1';
+  light.style.left = e.clientX + 'px';
+  light.style.top = e.clientY + 'px';
+});
+
+// 鼠标离开窗口 → 光斑消失
+document.addEventListener('mouseleave', () => {
+  light.style.opacity = '0';
+});
 
 // 页面切换
 function showPage(id) {
-  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'))
-  document.querySelectorAll('.menu a').forEach(a => a.classList.remove('active'))
-  document.getElementById('page-'+id).classList.add('active')
-  document.getElementById('nav-'+id).classList.add('active')
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.menu a').forEach(a => a.classList.remove('active'));
+  document.getElementById('page-' + id).classList.add('active');
+  document.getElementById('nav-' + id).classList.add('active');
 }
 
 // 复制群号
 function copyGroup() {
-  navigator.clipboard.writeText("908769617").then(()=>{
-    const t=document.getElementById('toast')
-    t.style.display='block'
-    setTimeout(()=>t.style.display='none',1600)
-  })
+  navigator.clipboard.writeText("908769617").then(() => {
+    const t = document.getElementById('toast');
+    t.style.display = 'block';
+    setTimeout(() => t.style.display = 'none', 1600);
+  });
 }
 </script>
+
 </body>
 </html>
